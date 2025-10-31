@@ -65,3 +65,6 @@ RUN set -eux; \
 # run all scripts in /etc/console/init/boot.d
 RUN set -eux; \
   test ! -d /etc/console/init/boot.d || find /etc/console/init/boot.d -maxdepth 1 -type f -exec bash {} \;
+
+# sleep forever
+CMD ["/bin/sh", "-c", "--", "sleep infinity"]
