@@ -14,6 +14,6 @@ jobs:
   main:
     uses: bsm/misc/.github/workflows/build-push-ghcr.yml@main
     with:
-      image: ${{ github.repository }}/console
+      image: ghcr.io/${{ github.repository }}/console
       tags: |
         type=raw,value=latest,enable={{is_default_branch}}
