@@ -1,4 +1,4 @@
-FROM debian:12-slim
+FROM debian:13-slim
 
 
 # install useful packages
@@ -51,10 +51,8 @@ RUN set -eux; \
   echo 'gem: --no-document' >> /usr/local/etc/gemrc
 
 # install useful ruby gems
-RUN set -eux \
+RUN set -eux; \
   \
-  gem update --system \
-  ; \
   gem install -N \
   bundler \
   http \
@@ -63,3 +61,7 @@ RUN set -eux \
   redis \
   sequel \
   ;
+
+# run all scripts in /etc/console/init/boot.d
+RUN set -eux; \
+  test ! -d /etc/console/init/boot.d || find /etc/console/init/boot.d -maxdepth 1 -type f -exec bash {} \;
